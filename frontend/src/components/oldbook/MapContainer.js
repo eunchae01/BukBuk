@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../css files/oldbook.css';
 
 
-const { kakao } = window
+const { kakao } = window;
 
 const MapContainer = ({ searchPlace }) => {
 
