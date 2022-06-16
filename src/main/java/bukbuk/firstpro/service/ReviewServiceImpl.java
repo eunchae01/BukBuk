@@ -14,7 +14,7 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public List<BukReviewDTO> getReviewList(String book_title) {
-        System.out.println("리뷰서비스호출");
+        System.out.println("책 이름 "+book_title);
 
         List<BukReviewDTO> dto = dao.list(book_title);
 

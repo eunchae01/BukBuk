@@ -28,10 +28,11 @@ public class ReviewDAOImpl implements ReviewDAO{
 
     @Override
     public List<BukReviewDTO> list(String book_title) {
+        List<BukReviewDTO> list = null;
 
         sql = "select * from buk_review where book_title = ?";
 
-        return (List<BukReviewDTO>) this.jdbcTemplate.queryForObject(sql, new RowMapper<BukReviewDTO>() {
+        return list = this.jdbcTemplate.query(sql, new RowMapper<BukReviewDTO>() {
             @Override
             public BukReviewDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
                 BukReviewDTO dto = new BukReviewDTO();
