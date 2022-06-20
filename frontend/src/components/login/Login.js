@@ -43,6 +43,9 @@ function Login(){
 
          };
          let history = useHistory();
+
+
+
          // 제출
          const handleSubmit =(e)=>{
             e.preventDefault();
@@ -74,8 +77,8 @@ function Login(){
                         <input placeholder="비밀번호" type={'password'} name="password" onChange={onChange} className="pw-input"/>
                         <button type="submit" className={getIsActive ?'green' :'gray'}>로그인</button>
                         <div>
-                            <Link to={''}>아이디 찾기</Link>
-                            <Link to={''}>비밀번호 찾기</Link>
+                            <Link to={'/find/id'}>아이디 찾기</Link>
+                            <Link to={'find/pw'}>비밀번호 찾기</Link>
                         </div>
                         <Link to={'/new-member'} className='move-new-member'>회원가입</Link>
                     </form>

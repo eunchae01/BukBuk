@@ -9,6 +9,8 @@ import ServiceWrite from './components/service/ServiceWrite';
 import Oldbooks from './components/oldbook/Oldbooks';
 import Books from './components/search-item/Books';
 import NewBooks from './components/newbook/NewBooks';
+import Id from './components/find/Id';
+import Pw from './components/find/Pw';
 function App() {
    
    return(
@@ -22,6 +24,9 @@ function App() {
             <Route path={'/oldbooks'} component={Oldbooks}/>
             <Route path={'/book'} component={Books}/>
             <Route path={'/newbooks'} component={NewBooks}/>
+            <Route path={'/find/id'} component={Id}/>
+            <Route path={'/find/pw'} component={Pw}/>
+
          </Switch>
       </BrowserRouter>
    )
