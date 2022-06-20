@@ -1,0 +1,27 @@
+#login-box{
+
+}
+
+.top{
+
+}
+p{
+
+}
+.login-form{
+
+}
+.id-input{
+
+}
+.pw-input{
+
+}
+.gray{
+    background-color: #555555;
+    transition: 0.6;
+}
+.green{
+    background-color: lightgreen;
+    transition: 0.6;
+}
