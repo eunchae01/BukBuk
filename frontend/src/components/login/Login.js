@@ -42,13 +42,15 @@ function Login(){
             password: password
 
          };
+
+
          let history = useHistory();
 
 
 
          // 제출
-         const handleSubmit =(e)=>{
-            e.preventDefault();
+         const handleSubmit =()=>{
+            // e.preventDefault();
             console.log("id :" + id)
             console.log("pw :" + password)
             axios.post("" , body)
@@ -57,7 +59,12 @@ function Login(){
             .catch(e=> console.log(e))
         }
             
-         
+        const ALert =(e)=>{
+            e.preventDefault();
+            if(!getIsActive){
+                alert("아이디와 비밀번호를 알맞게 기입해 주세요")
+            }
+        } 
         
 
     return(
@@ -77,7 +84,7 @@ function Login(){
                             <input placeholder="아이디" type="id" name="id" onChange={onChange} className="id-input"/>
                             <input placeholder="비밀번호" type={'password'} name="password" onChange={onChange} className="pw-input"/>
                         </div>
-                        <button type="submit" className={getIsActive ?'green' :'gray'}>로그인</button>
+                        <button type="submit" className={getIsActive ?'green' :'gray'} onClick={ALert}>로그인</button>
                         <div className="find">
                             <Link to={'/find/id'} className='id-find'>아이디 찾기</Link>
                             <Link to={'find/pw'}>비밀번호 찾기</Link>
