@@ -71,16 +71,20 @@ function Login(){
                     </div>
                     <p>Hello , Welcome to BUKBUK ! </p>
                 </div>
-                <div>
+                <div className="login-input">
                     <form className="login-form" onSubmit={handleSubmit}>
-                        <input placeholder="아이디" type="id" name="id" onChange={onChange} className="id-input"/>
-                        <input placeholder="비밀번호" type={'password'} name="password" onChange={onChange} className="pw-input"/>
+                        <div className="id-pw">
+                            <input placeholder="아이디" type="id" name="id" onChange={onChange} className="id-input"/>
+                            <input placeholder="비밀번호" type={'password'} name="password" onChange={onChange} className="pw-input"/>
+                        </div>
                         <button type="submit" className={getIsActive ?'green' :'gray'}>로그인</button>
-                        <div>
-                            <Link to={'/find/id'}>아이디 찾기</Link>
+                        <div className="find">
+                            <Link to={'/find/id'} className='id-find'>아이디 찾기</Link>
                             <Link to={'find/pw'}>비밀번호 찾기</Link>
                         </div>
-                        <Link to={'/new-member'} className='move-new-member'>회원가입</Link>
+                        <div className="new">
+                            <Link to={'/new-member'} className='move-new-member'>회원가입</Link>
+                        </div>
                     </form>
                 </div>
             </main> 
