@@ -68,8 +68,11 @@
     width: 100%;
     height: 65%;
     background-color: aqua;
+   
   }
-
+  .modal-find-comment{
+    padding: 5vh 0 3vh 0;
+  }
 
   /* 모달 푸터 */
   .modal-find-goback-login{

@@ -97,7 +97,7 @@ function Id(){
                 />
                 <button type="submit" className="find-id-submit">확인</button>
             </form>
-            <Modal open ={modalOpen} close={closeModal} header="Modal Heading" data ={data}/>  
+            <Modal open ={modalOpen} close={closeModal} header="Modal Heading" data ={data} comment={`자기님의 id 는 ...`}/>  
         </main>
         </>
     );

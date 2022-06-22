@@ -99,7 +99,7 @@ const closeModal = ()=>{
                 />
                 <button type="submit" className="find-pw-submit">확인</button>
             </form>
-            <Modal open ={modalOpen} close={closeModal} header="Modal Heading" data={data}/>  
+            <Modal open ={modalOpen} close={closeModal} header="Modal Heading" data={data} comment={`자기님의 비밀번호는 ...`}/>  
         </main>
         </>
     );
