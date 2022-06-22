@@ -84,7 +84,10 @@ function Login(){
                             <input placeholder="아이디" type="id" name="id" onChange={onChange} className="id-input"/>
                             <input placeholder="비밀번호" type={'password'} name="password" onChange={onChange} className="pw-input"/>
                         </div>
+                        
+                        {/* 로그인 버튼 */}
                         <button type="submit" className={getIsActive ?'green' :'gray'} onClick={ALert}>로그인</button>
+                        
                         <div className="find">
                             <Link to={'/find/id'} className='id-find'>아이디 찾기</Link>
                             <Link to={'find/pw'}>비밀번호 찾기</Link>
