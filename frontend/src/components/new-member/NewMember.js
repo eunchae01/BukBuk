@@ -9,16 +9,16 @@ import axios from 'axios';
 function LogIn(){
 
   const [inputValue, setInputValue] = useState({
-    userName: '',
-    email: '',
-    password: '',
-    phoneNumber: '',
-    address: '',
+    mem_name: '',
+    mem_email: '',
+    mem_pwd: '',
+    mem_phone: '',
+    mem_addr: '',
   });
 
   const [checkBoxActive, setCheckBoxActive] = useState(false);
 
-  const { userName, email, password, phoneNumber, address } = inputValue;
+  const { mem_name, mem_email, mem_pwd, mem_phone, mem_addr } = inputValue;
   
   const handleInput = event => {
     const { name, value } = event.target;
@@ -26,45 +26,37 @@ function LogIn(){
       ...inputValue, 
       [name]: value,
     });
-    // console.log(`${name} 은 ${value} 입니다`)
   };
 
   // 모든 input의 value가 1자 이상이 되어야 한다
-const isValidEmail = email.includes('@') && email.includes('.');
-const specialLetter = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-const isValidPassword = password.length >= 8 && specialLetter >= 1;
-const isValidPhone = phoneNumber.includes('-') && phoneNumber.length >= 13;
-const isValidInput = userName.length >= 1 && phoneNumber.length >= 1 && address.length >= 1;
-
-
+const isValidEmail = mem_email.includes('@') && mem_email.includes('.');
+const specialLetter = mem_pwd.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+const isValidPassword = mem_pwd.length >= 8 && specialLetter >= 1;
+const isValidPhone = mem_phone.includes('-') && mem_phone.length >= 13;
+const isValidInput = mem_name.length >= 1 && mem_phone.length >= 1 && mem_addr.length >= 1;
 const isCheckBoxClicked = () => {
     setCheckBoxActive(!checkBoxActive);
     console.log(checkBoxActive);
     
   };
-
-
-
 // 검사한 모든 로직의 유효성 검사가 true가 될때 getIsActive함수가 작동한다. 버튼 클릭 이벤트가 발생할때 넣어줄 함수.
 const getIsActive = 
    isValidEmail && isValidPassword && isValidInput && checkBoxActive && isValidPhone === true;
 
 
-
-
 let body = {
-  userName: userName,
-  email: email,
-  password: password,
-  phoneNumber: phoneNumber,
-  address: address,
-};
+  mem_name : mem_name,
+  mem_pwd : mem_pwd,
+  mem_addr : mem_addr,
+  mem_phone: mem_phone,
+  mem_email: mem_email,
+}
 
 
 
 // 유효성 검사 중 하나라도 만족하지못할때 즉, 버튼이 비활성화 될 때 버튼을 클릭하면 아래와 같은 경고창이 뜬다.
 const handleButtonValid = (e) => {
-e.preventDefault();
+  e.preventDefault();
  if (!isValidInput){alert('칸을 다 채워주세요')}
  else if(!isValidEmail){alert('이메일 형식에 맞게 써주세요')}
  else if(!isValidPassword ){alert('비밀번호는 8자리 이상과 특수문자를 1개이상 포함 해주세요')}
@@ -72,9 +64,9 @@ e.preventDefault();
  else if(!checkBoxActive){alert('체크박스를 클릭 해주세요')}
  else{
   console.log('success')
-  axios.post('http://localhost:8080/sign' , body)
+  axios.post('http://localhost:8080/sign', body )
   .then(res=>console.log(res))
-  .catch(e=>console.log(e))
+  .catch(e=>console.log("error" + e))
 };
 }
   // jsx코드
@@ -128,7 +120,7 @@ e.preventDefault();
                   type='text'
                   className='input post'
                   placeholder='검색 버튼을 사용하세요'
-                  name="mem_addr1"
+                  name="address"
                   onChange={handleInput}
                   readOnly
                 />
@@ -137,7 +129,7 @@ e.preventDefault();
               <input
                   type='text'
                   className='input road-address'
-                  name="mem_addr2"
+                  name="address"
                   onChange={handleInput}
                   placeholder='도로명 주소'
                   readOnly
@@ -145,7 +137,7 @@ e.preventDefault();
                 <input
                 type='text'
                 className='input specific-address'
-                name="mem_addr3"
+                name="mem_addr"
                 onChange={handleInput}
                 placeholder='상세주소'
                 />
@@ -178,6 +170,7 @@ e.preventDefault();
                   getIsActive ? 'signUpButtonAction' : 'signUpButtonInaction'
                 }
                 type="submit"
+                
               >
                 BUKBUK의 회원되기
               </button>
@@ -191,4 +184,3 @@ e.preventDefault();
 
 
 export default LogIn;
-
