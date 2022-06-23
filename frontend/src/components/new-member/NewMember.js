@@ -51,7 +51,7 @@ const getIsActive =
 
 
 
-
+// axios 로 보내줄 바디 영역
 let body = {
   userName: userName,
   email: email,
@@ -60,7 +60,21 @@ let body = {
   address: address,
 };
 
-
+const submit = (e)=>{
+  e.preventDefault()
+  const { name , value } =e.target;
+  let body = {
+    [name]:value,
+    [name]:value,
+    [name]:value,
+    [name]:value,
+    [name]:value,
+  };
+  console.log(body);
+  axios.post('http://localhost:8080/sign' , body)
+  .then(res=>console.log(res))
+  .catch(e=>console.log(e))
+}
 
 // 유효성 검사 중 하나라도 만족하지못할때 즉, 버튼이 비활성화 될 때 버튼을 클릭하면 아래와 같은 경고창이 뜬다.
 const handleButtonValid = (e) => {
@@ -86,7 +100,7 @@ e.preventDefault();
     <main className='signUp'>
       <form 
       className="signUpInput"
-      onSubmit={handleButtonValid}
+      onSubmit={submit}
       >
             <div className="nameInput">
               <div className="inputMessage">이름 *</div>
