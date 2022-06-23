@@ -3,7 +3,9 @@ package bukbuk.firstpro.service;
 import bukbuk.firstpro.model.BukMemberDTO;
 import bukbuk.firstpro.repository.MemberDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemberServiceImpl implements MemberService{
     @Autowired
     MemberDAOImpl dao;

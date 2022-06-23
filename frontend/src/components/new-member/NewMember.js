@@ -26,7 +26,7 @@ function LogIn(){
       ...inputValue, 
       [name]: value,
     });
-    // console.log(`${name} 은 ${value} 입니다`)
+     console.log(`${name} 은 ${value} 입니다`)
   };
 
   // 모든 input의 value가 1자 이상이 되어야 한다
@@ -49,7 +49,7 @@ const isCheckBoxClicked = () => {
 const getIsActive = 
    isValidEmail && isValidPassword && isValidInput && checkBoxActive && isValidPhone === true;
 
-
+console.log(getIsActive)
 
 
 let body = {
@@ -64,7 +64,8 @@ let body = {
 
 // 유효성 검사 중 하나라도 만족하지못할때 즉, 버튼이 비활성화 될 때 버튼을 클릭하면 아래와 같은 경고창이 뜬다.
 const handleButtonValid = (e) => {
-e.preventDefault();
+ e.preventDefault();
+ console.log("시작")
  if (!isValidInput){alert('칸을 다 채워주세요')}
  else if(!isValidEmail){alert('이메일 형식에 맞게 써주세요')}
  else if(!isValidPassword ){alert('비밀번호는 8자리 이상과 특수문자를 1개이상 포함 해주세요')}
@@ -128,7 +129,7 @@ e.preventDefault();
                   type='text'
                   className='input post'
                   placeholder='검색 버튼을 사용하세요'
-                  name="mem_addr1"
+                  name="address"
                   onChange={handleInput}
                   readOnly
                 />
@@ -137,7 +138,7 @@ e.preventDefault();
               <input
                   type='text'
                   className='input road-address'
-                  name="mem_addr2"
+                  name="address"
                   onChange={handleInput}
                   placeholder='도로명 주소'
                   readOnly
@@ -145,7 +146,7 @@ e.preventDefault();
                 <input
                 type='text'
                 className='input specific-address'
-                name="mem_addr3"
+                name="address"
                 onChange={handleInput}
                 placeholder='상세주소'
                 />
