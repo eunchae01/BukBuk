@@ -13,4 +13,5 @@ public class BukMemberDTO {
     private String mem_addr;
     private String mem_email;
     private String mem_date;
+    private String mem_phone;
 }
