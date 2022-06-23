@@ -8,10 +8,11 @@
 main{
     position: absolute;
     top: 30%;
-    left: 35%;
-    
+    left: 35%;  
 }
-
+.signUp{
+    margin-left: 4vw;
+}
 .signUpInput{
      margin-bottom: 20vh;
 }
