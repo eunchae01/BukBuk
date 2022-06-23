@@ -67,27 +67,18 @@ public class bukbukController {
 
     //회원가입
     @RequestMapping("/sign")
-    public void sign(BukMemberDTO dto, HttpServletResponse response){
+    public int sign(BukMemberDTO dto) {
         int check = this.memberService.insertMember(dto);
 
-        response.setContentType("text/html; charset=UTF-8");
+        int sign = 0;
 
-        try {
-            PrintWriter out = response.getWriter();
-
-            if (check > 0){
-                out.println("<script>");
-                out.println("alert('회원가입이 완료되었습니다.')");
-                out.println("</script>");
-            } else {
-                out.println("<script>");
-                out.println("alert('가입중 오류가 발생했습니다.')");
-                out.println("history.back()");
-                out.println("</script>");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (check > 0){
+            sign = 1;
+        } else {
+            System.out.println("회원가입 실패");
         }
+
+        return sign;
     }
 
     //회원탈퇴

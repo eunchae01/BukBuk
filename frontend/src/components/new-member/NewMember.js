@@ -1,16 +1,19 @@
-import React,{useState} from 'react';
+import React,{useState } from 'react';
 import Nav from '../navibar/Nav';
 import '../../css files/new-member-input.css';
 import Adress from './Adress';
 import '../../css files/font.css';
 import Menu from '../navibar/Menu';
 import axios from 'axios';
-
+import {useHistory} from 'react-router-dom';
 function LogIn(){
+
+  const [ data ,setData] = useState(null)
+
 
   const [inputValue, setInputValue] = useState({
     mem_name: '',
-    mem_email: '',
+    mem_id: '',
     mem_pwd: '',
     mem_phone: '',
     mem_addr: '',
@@ -18,7 +21,7 @@ function LogIn(){
 
   const [checkBoxActive, setCheckBoxActive] = useState(false);
 
-  const { mem_name, mem_email, mem_pwd, mem_phone, mem_addr } = inputValue;
+  const { mem_name, mem_id, mem_pwd, mem_phone, mem_addr } = inputValue;
   
   const handleInput = event => {
     const { name, value } = event.target;
@@ -26,10 +29,11 @@ function LogIn(){
       ...inputValue, 
       [name]: value,
     });
+    console.log(`${name} 의 값은 ${value} 입니다`)
   };
 
   // 모든 input의 value가 1자 이상이 되어야 한다
-const isValidEmail = mem_email.includes('@') && mem_email.includes('.');
+const isValidEmail = mem_id.includes('@') && mem_id.includes('.');
 const specialLetter = mem_pwd.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 const isValidPassword = mem_pwd.length >= 8 && specialLetter >= 1;
 const isValidPhone = mem_phone.includes('-') && mem_phone.length >= 13;
@@ -49,10 +53,10 @@ let body = {
   mem_pwd : mem_pwd,
   mem_addr : mem_addr,
   mem_phone: mem_phone,
-  mem_email: mem_email,
+  mem_id: mem_id,
 }
 
-
+const history = useHistory();
 
 // 유효성 검사 중 하나라도 만족하지못할때 즉, 버튼이 비활성화 될 때 버튼을 클릭하면 아래와 같은 경고창이 뜬다.
 const handleButtonValid = (e) => {
@@ -64,9 +68,20 @@ const handleButtonValid = (e) => {
  else if(!checkBoxActive){alert('체크박스를 클릭 해주세요')}
  else{
   console.log('success')
-  axios.post('http://localhost:8080/sign', body )
-  .then(res=>console.log(res))
-  .catch(e=>console.log("error" + e))
+  axios.post('http://localhost:8080/sign', null ,  {params:{
+                                            mem_name : mem_name,
+                                            mem_pwd : mem_pwd,
+                                            mem_addr : mem_addr,
+                                            mem_phone: mem_phone,
+                                            mem_id: mem_id,}
+                                          } )
+  .then(res=>
+    setData(res.data)
+  )
+  .catch(alert("회원가입이 정상적으로 이루어지지 않았습니다"))
+   if({data}===1){alert("회원가입이 완료되었습니다") ;
+   history.push("/login")
+   }
 };
 }
   // jsx코드
@@ -92,7 +107,7 @@ const handleButtonValid = (e) => {
               <div className="inputMessage">이메일(ID) *</div>
               <input
               className='input'
-                name="mem_email"
+                name="mem_id"
                 onChange={handleInput}
               />
             </div>
