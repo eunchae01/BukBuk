@@ -19,9 +19,10 @@ function Login({location}){
         const [users,setUsers] = useState(null);
 
 
+
         //보안 인증
-        const authenticated = users != null ;
-        console.log(authenticated)
+        const secure = users != null ;
+        console.log("secure : " + secure)
         
 
 
@@ -58,11 +59,15 @@ function Login({location}){
 
         
          const { from } = location.state || { from: { pathname: "/" } };
-         console.log(from)
+         console.log(from);
+
+
+
+      
 
          // 제출
-         const handleSubmit =async()=>{
-            
+         const handleSubmit = async (e)=>{
+            e.preventDefault();
             // console.log("id :" + id)
             // console.log("pw :" + password)
             // setUsers(id);
@@ -72,16 +77,8 @@ function Login({location}){
             .then(res=> 
                 setUsers(res.data)
             ).catch(e=>alert("hi" +e ))
-            console.log("지금은" + authenticated)
-            if(users)
-            {   
-                <>  
-                    <Home authenticated={authenticated}/>  
-                    <App authenticated={authenticated}/> 
-                </>
-            }      
-            console.log("이동하겠습니다 !")
-            if(authenticated===true){
+            console.log("지금은" + secure)
+            if(secure===true){
                 return <Redirect to={from}/>   
             }
             else{
@@ -90,27 +87,11 @@ function Login({location}){
             
         }
 
-        // const onClick = async(e)=>{
-        //     e.preventDefault();
-        //     await axios.get("https://jsonplaceholder.typicode.com/users" )
-        //     .then(res=> 
-        //         setUsers(res.data)
-        //         )
-        //     console.log("지금은" + authenticated)
-            
-        // }
-            
-        // const ALert =(e)=>{
-        //     e.preventDefault();
-        //     if(!getIsActive){
-        //         alert("아이디와 비밀번호를 알맞게 기입해 주세요")
-        //     }
-        // } 
-        
+   
 
         
         
-        // if (authenticated) {return <Redirect to={from}/>} //from 으로 이동
+    
         
 
     return(
@@ -125,7 +106,7 @@ function Login({location}){
                     <p>Hello , Welcome to BUKBUK ! </p>
                 </div>
                 <div className="login-input">
-                    <form className="login-form" onSubmit={handleSubmit}>
+                    <form className="login-form">
                         
                         <div className="id-pw">
                             <input placeholder="아이디" type="id" name="id" onChange={onChange} className="id-input"/>

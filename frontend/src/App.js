@@ -6,36 +6,38 @@ import NewMember from './components/./new-member/NewMember';
 import MyPage from './components/mypage/MyPage';
 import Service from './components/service/Service';
 import Home from './components/Home/Home';
-
+import AuthRoute from './components/auth/AuthRoute';
 import ServiceWrite from './components/service/ServiceWrite';
 import Oldbooks from './components/oldbook/Oldbooks';
 import Books from './components/search-item/Books';
 import NewBooks from './components/newbook/NewBooks';
 import Id from './components/find/Id';
 import Pw from './components/find/Pw';
+import LogOut from './components/loggout/LogOut';
+import MemberOut from './components/member-out/MemberOut';
 
 
-// import signIn from './components/logintest/auth';
-// import AuthRoute from './components/logintest/AuthRoute';
-// import Profile from './components/logintest/Profile';
 
 
-function App(authenticated) {
-   // const [user , setUser] = useState(null);
+
+function App() {
+
    
-   
+   const authenticated = false;
 
 
-   // axios 로 접근하는 코드 짜야함
-   //로그인 / 로그아웃
-   // const login = ({email, password}) => setUser(signIn({email,password}));
-   // const  logout = ()=> setUser(null);
+ 
 
    return(
       <BrowserRouter>
          <Switch> 
-            <Route path={'/'} exact component={Home} />
-            {/* <Route path={'/login'} component={Login}/> */}
+         <Route
+            path="/"
+            exact
+            render={() => (
+              <Home authenticated={authenticated} />
+            )}
+          />
             <Route
             path="/login"
             render={props => (
@@ -43,12 +45,6 @@ function App(authenticated) {
             )}
           />
             
-      
-
-            {/* {authenticated
-            ?<Route path={'/mypage'} component={MyPage}/>
-            :  
-            } */}
             <Route path={'/new-member'}component={NewMember}/> 
             <Route path={'/service'} component={Service}/>
             <Route path={'/write'} component={ServiceWrite}/>
@@ -57,6 +53,29 @@ function App(authenticated) {
             <Route path={'/newbooks'} component={NewBooks}/>
             <Route path={'/find/id'} component={Id}/>
             <Route path={'/find/pw'} component={Pw}/>
+
+
+              {/*로그인 안 했을 때 접근 불가 url  */}
+            <AuthRoute
+            authenticated={authenticated}
+            path="/mypage"
+            render={props => <MyPage  {...props} />}
+          />
+
+            
+            <AuthRoute
+              authenticated={authenticated}
+              path="/logout"
+              render={props => <LogOut  {...props} />}
+            />  
+
+
+            <AuthRoute
+              authenticated={authenticated}
+              path="/member-out"
+              render={props => <MemberOut  {...props} />}
+            />  
+
          </Switch>
       </BrowserRouter>
    )

@@ -1,10 +1,16 @@
-import React from "react";
+import React,{useState} from "react";
 import '../../css files/nav.css';
 import {Link} from 'react-router-dom';
 import Input from "../search-item/Input";
+import SignIn from '../login/SignIn';
 
 
-function Nav(authenticated){
+function Nav(){
+    const [user, setUser] = useState(null);
+    const authenticated = user != null;
+
+    const login = ({ email, password }) => setUser(SignIn({ email, password }));
+    const logout = () => setUser(null);
     return(
         <>
         <div id="navibar" className="nav-flex">
@@ -20,25 +26,26 @@ function Nav(authenticated){
                 <Input/>
             </div>
             <div className="tab">
-
-                {!authenticated
-                ? <div className="login">
-                    <Link to={'/logout'}><div className="login-btn">로그아웃</div></Link>
-                </div> 
-                :<div className="login">
-                    <Link to={'/login'}><div className="login-btn">로그인</div></Link>
+                <div className="login">
+                    {authenticated
+                    ? (
+                        <Link to={'/logout'}><div className="login-btn">로그아웃</div></Link>
+                    ) 
+                    :(
+                        <Link to={'/login'}><div className="login-btn">로그인</div></Link>
+                    )
+                    }
                 </div>
-                }
-
-                {!authenticated
-                ?<div className="new-member">
-                    <Link to={'/mypage'}> <div className="new-member-btn">내 정보 수정</div></Link>
-                </div>   
-                :<div className="new-member">
-                   <Link to={'/new-member'}> <div className="new-member-btn">회원가입</div></Link>
+                <div className="new-member">
+                    {authenticated
+                    ?(
+                        <Link to={'/mypage'}> <div className="new-member-btn">내 정보 수정</div></Link>
+                    ) 
+                    :(
+                    <Link to={'/new-member'}> <div className="new-member-btn">회원가입</div></Link>
+                    )
+                    }
                 </div>
-                }
-
 
                 <div className="help">
                     <Link to={'/service'}><div className="service-btn">고객센터</div></Link>

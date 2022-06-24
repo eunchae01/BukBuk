@@ -6,7 +6,7 @@ import '../../css files/font.css';
 import Menu from '../navibar/Menu';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
-function LogIn(){
+function NewMember(){
 
   const [ data ,setData] = useState(null)
 
@@ -198,4 +198,4 @@ const handleButtonValid = (e) => {
   }
 
 
-export default LogIn;
+export default NewMember;
