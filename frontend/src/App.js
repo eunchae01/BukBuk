@@ -112,23 +112,22 @@ function App() {
             <AuthRoute
             authenticated={authenticated}
             path="/mypage"
-            render={props => <MyPage  {...props} />}
+            component={MyPage}
           />
 
             
             <AuthRoute
               authenticated={authenticated}
               path="/logout"
-              render={props => <LogOut  {...props} />}
+              component={LogOut}
             />  
 
 
             <AuthRoute
               authenticated={authenticated}
               path="/member-out"
-              render={props => <MemberOut  {...props} />}
+              component={MemberOut}
             />  
-
          </Switch>
       </BrowserRouter>
    )
