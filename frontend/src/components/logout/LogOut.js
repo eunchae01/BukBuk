@@ -1,9 +1,15 @@
 import React from "react";
 
-function LogOut(){
+function LogOut({logout, history}){
+    const handleClick = ()=>{
+        logout();
+        history.push('/');
+    }
     return(
-        <div>
-            
+        <div 
+            className="login-btn"
+            onClick={handleClick}>
+            로그아웃
         </div>
     );
 };

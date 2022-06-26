@@ -1,12 +1,19 @@
-import React from "react";
+import axios from "axios";
 
-function SignIn(){
-    return(
-        <div>
-            
-        </div>
-    );
+
+export function SignIn ({id , password}){
+
+    let body = {params:{
+        id: id,
+        password: password
+    }}
+
+    const user =axios.post('http://localhost:8080/loginok' , null  , body)
+    .then(res=> console.log(res))
+    .catch(e=>console.log(e))
+    
+    return user;
 };
 
-export default SignIn;
+
 

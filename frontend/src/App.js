@@ -15,6 +15,7 @@ import Id from './components/find/Id';
 import Pw from './components/find/Pw';
 import LogOut from './components/logout/LogOut';
 import MemberOut from './components/member-out/MemberOut';
+import {SignIn} from '../src/components/sign/SignIn';
 
 
 
@@ -22,21 +23,31 @@ import MemberOut from './components/member-out/MemberOut';
 
 function App() {
 
-  // const [state , setState] = useState(false)
-   
-  //  const authenticated = state !== false;
+  const [user, setUser] = useState(null);
+  const authenticated = user != null;
 
+  const login = ({ id, password }) => setUser(SignIn({ id, password }));
+  const logout = () => setUser(null);
+   
   
+
+
+
   // appjs 부터 시작해야함
 
    return(
       <BrowserRouter>
          <Switch> 
-         <Route path={'/'}exact component={Home}/>
+         <Route path={'/'}
+                exact  
+                authenticated={authenticated}
+                logout={logout}
+                component={Home}
+          />
             <Route
             path="/login"
             render={props => (
-              <Login authenticated={authenticated} {...props} />
+              <Login authenticated={authenticated} login={login} {...props} />
             )}
           />
             

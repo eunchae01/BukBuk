@@ -3,11 +3,11 @@ import Menu from "../navibar/Menu";
 import Nav from "../navibar/Nav";
 import Slide from "../slide/Slide";
 
-function Home(authenticated){
+function Home({authenticated , logout}){
     
     return(
         <>
-        <Nav authenticated={authenticated} />
+        <Nav authenticated={authenticated} logout={logout} />
         <Menu/>
         <Slide/>
         </>
