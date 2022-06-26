@@ -17,7 +17,7 @@ import LogOut from './components/logout/LogOut';
 import MemberOut from './components/member-out/MemberOut';
 import {SignIn} from '../src/components/sign/SignIn';
 
-import {Link , useHistory} from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import '../src/css files/nav.css';
 import Input from "../src/components/search-item/Input";
 
@@ -32,12 +32,9 @@ function App() {
   const logout = () => setUser(null);
    
   
-  let history = useHistory();
+  
     
-    const handleClick = ()=>{
-        logout();
-        history.push('/');
-    }
+
 
 
   // appjs 부터 시작해야함
@@ -60,7 +57,7 @@ function App() {
 
                 {authenticated
                 ? <div className="login">
-                    <div className="login-btn" onClick={handleClick}>로그아웃</div>
+                   <LogOut logout={logout}/>
                 </div> 
                 :<div className="login">
                     <Link to={'/login'}><div className="login-btn">로그인</div></Link>
@@ -85,12 +82,10 @@ function App() {
         
 
          <Switch> 
-         <Route path={'/'}
-                exact  
-                authenticated={authenticated}
-                logout={logout}
-                component={Home}
-          />
+          <Route path={'/'}
+                  exact  
+                  component={Home}
+            />
             <Route
             path="/login"
             render={props => (
