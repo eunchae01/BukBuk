@@ -30,7 +30,7 @@ function MyPage(){
                         <input/>
                     </div>
                     
-                    <button onClick={handleSubmit}></button>
+                    <button></button>
                 </form>
             </div>
         </>
