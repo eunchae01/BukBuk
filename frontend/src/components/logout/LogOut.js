@@ -1,4 +1,6 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
+
 
 function LogOut({logout, history}){
     const handleClick = ()=>{
@@ -14,5 +16,5 @@ function LogOut({logout, history}){
     );
 };
 
-export default LogOut;
+export default withRouter(LogOut);
 

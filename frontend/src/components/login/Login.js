@@ -13,6 +13,7 @@ function Login({authenticated, login, location}){
             password: ""
         });
 
+        
 
 
         //보안 인증
@@ -46,10 +47,11 @@ function Login({authenticated, login, location}){
          const handleSubmit = ()=>{
             try{
                 login({id , password})
-            }
+                }
             catch (e){
-                alert("로그인에 실패하였습니다.")
-                setInputValue(" ")
+                alert("로그인에 실패하였습니다." + e)
+                id(" ")
+                password("")
             }
             return <ServiceWrite id ={id}/>
          } 
