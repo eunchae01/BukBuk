@@ -108,7 +108,7 @@ public class bukbukController {
 
     //로그인
     @RequestMapping("/login-ok")
-    public int loginOk(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpServletRequest request, HttpServletResponse response){
+    public int loginOk(@RequestParam("mem_id") String id, @RequestParam("mem_pwd") String pwd, HttpServletRequest request, HttpServletResponse response){
         BukMemberDTO dto = this.memberService.getMember(id);
 
         int logIn = 0;
@@ -119,9 +119,14 @@ public class bukbukController {
 
                 session.setAttribute("mem_num", dto.getMem_num());
 
+
+
                 logIn = 1;
             } else {   
                 System.out.println("비밀번호 일치하지 않음");
+
+                System.out.println("1" + pwd);
+                System.out.println("2" + dto.getMem_pwd());
             }
         } else{ //일치하는 아이디가 db에 없을 때
             System.out.println("회원가입된 아이디가 없음");

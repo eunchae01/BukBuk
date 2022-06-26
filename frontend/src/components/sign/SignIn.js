@@ -4,11 +4,11 @@ import axios from "axios";
 export function SignIn ({id , password}){
 
     let body = {params:{
-        id: id,
-        password: password
+        mem_id: id,
+        mem_pwd: password
     }}
 
-    const user =axios.post('http://localhost:8080/loginok' , null  , body)
+    const user =axios.post('http://localhost:8080/login-ok' , null  , body)
     .then(res=> console.log(res))
     .catch(e=>console.log(e))
     
