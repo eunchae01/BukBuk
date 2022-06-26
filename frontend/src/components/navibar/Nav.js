@@ -1,10 +1,18 @@
 import React from "react";
 import '../../css files/nav.css';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import Input from "../search-item/Input";
 
 
-function Nav(authenticated){
+function Nav({authenticated , logout}){
+
+    let history = useHistory();
+    
+    const handleClick = ()=>{
+        logout();
+        history.push('/');
+    }
+
     return(
         <>
         <div id="navibar" className="nav-flex">
@@ -21,16 +29,16 @@ function Nav(authenticated){
             </div>
             <div className="tab">
 
-                {!authenticated
+                {authenticated
                 ? <div className="login">
-                    <Link to={'/logout'}><div className="login-btn">로그아웃</div></Link>
+                    <div className="login-btn" onClick={handleClick}>로그아웃</div>
                 </div> 
                 :<div className="login">
                     <Link to={'/login'}><div className="login-btn">로그인</div></Link>
                 </div>
                 }
 
-                {!authenticated
+                {authenticated
                 ?<div className="new-member">
                     <Link to={'/mypage'}> <div className="new-member-btn">내 정보 수정</div></Link>
                 </div>   

@@ -48,13 +48,13 @@ const getIsActive =
    isValidEmail && isValidPassword && isValidInput && checkBoxActive && isValidPhone === true;
 
 
-let body = {
-  mem_name : mem_name,
-  mem_pwd : mem_pwd,
-  mem_addr : mem_addr,
-  mem_phone: mem_phone,
-  mem_id: mem_id,
-}
+// let body = {params:{
+//   mem_name : mem_name,
+//   mem_pwd : mem_pwd,
+//   mem_addr : mem_addr,
+//   mem_phone: mem_phone,
+//   mem_id: mem_id,
+// }}
 
 const history = useHistory();
 

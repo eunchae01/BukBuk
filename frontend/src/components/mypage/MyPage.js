@@ -9,12 +9,28 @@ function MyPage(){
             <Menu/>
             <div>
                 <form>
-                    <input/>
-                    <input/>
-                    <input/>
-                    <input/>
-                    <input/>
-                    <input/>
+                    <div>
+                        <div>아이디</div>
+                        <input/>
+                    </div>
+                    <div>
+                        <div>이메일(id)</div>
+                        <input/>
+                    </div>
+                    <div>
+                        <div>비밀번호</div>
+                        <input/>
+                    </div>
+                    <div>
+                        <div>아이디</div>
+                        <input/>
+                    </div>
+                    <div>
+                        <div>아이디</div>
+                        <input/>
+                    </div>
+                    
+                    <button onClick={handleSubmit}></button>
                 </form>
             </div>
         </>
