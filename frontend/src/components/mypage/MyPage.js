@@ -1,5 +1,4 @@
 import React from "react";
-
 import Menu from "../navibar/Menu";
 
 function MyPage(){

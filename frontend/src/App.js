@@ -119,7 +119,9 @@ function App() {
             <AuthRoute
               authenticated={authenticated}
               path="/logout"
-              componenet={LogOut}
+
+              component={LogOut}
+
             />  
 
 
@@ -128,7 +130,6 @@ function App() {
               path="/member-out"
               component={MemberOut}
             />  
-
          </Switch>
       </BrowserRouter>
    )
