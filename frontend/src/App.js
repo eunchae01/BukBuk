@@ -119,7 +119,9 @@ function App() {
             <AuthRoute
               authenticated={authenticated}
               path="/logout"
+
               component={LogOut}
+
             />  
 
 
