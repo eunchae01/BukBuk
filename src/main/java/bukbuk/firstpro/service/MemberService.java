@@ -4,9 +4,11 @@ import bukbuk.firstpro.model.BukMemberDTO;
 
 public interface MemberService {
     //회원가입
-    int insertMember(BukMemberDTO dto);
+    public int insertMember(BukMemberDTO dto);
 
-    int deleteMember(int num);
+    public int deleteMember(int num);
 
-    void updateSequence(int num);
+    public void updateSequence(int num);
+
+    public BukMemberDTO getMember(String id);
 }
