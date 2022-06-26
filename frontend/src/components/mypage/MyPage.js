@@ -5,7 +5,6 @@ import Menu from "../navibar/Menu";
 function MyPage(){
     return(
         <>
-            <Nav/>
             <Menu/>
             <div>
                 <form>

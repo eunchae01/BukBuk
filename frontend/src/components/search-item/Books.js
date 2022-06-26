@@ -1,5 +1,5 @@
 import React, {useState ,  useEffect } from "react";
-import Nav from "../navibar/Nav";
+
 import Menu from "../navibar/Menu";
 import '../../css files/book-description.css'
 import axios from "axios";
@@ -29,7 +29,7 @@ const [text , setText] = useState([])
     },[])
     return(
         <div>
-           <Nav/>
+         
            <Menu/> 
            <div id="description-main">
                 <div className="book-title">{url.get('book_title')}
