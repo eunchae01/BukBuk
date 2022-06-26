@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -106,7 +107,27 @@ public class bukbukController {
     }
 
     //로그인
-/*  @RequestMapping("/login")
-public */
+    @RequestMapping("/login-ok")
+    public int loginOk(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpServletRequest request, HttpServletResponse response){
+        BukMemberDTO dto = this.memberService.getMember(id);
+
+        int logIn = 0;
+
+        if (dto != null){
+            if (pwd.equals(dto.getMem_pwd())){
+                HttpSession session = request.getSession();
+
+                session.setAttribute("mem_num", dto.getMem_num());
+
+                logIn = 1;
+            } else {   
+                System.out.println("비밀번호 일치하지 않음");
+            }
+        } else{ //일치하는 아이디가 db에 없을 때
+            System.out.println("회원가입된 아이디가 없음");
+        }
+
+        return logIn;
+    }
 
 }

@@ -30,4 +30,13 @@ public class MemberServiceImpl implements MemberService{
     public void updateSequence(int num) {
 
     }
+
+    @Override
+    public BukMemberDTO getMember(String id) {
+        System.out.println("로그인 서비스 호출");
+
+        BukMemberDTO login = dao.getMember(id);
+
+        return login;
+    }
 }
