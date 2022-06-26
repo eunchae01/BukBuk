@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Menu from '../navibar/Menu';
 import { Link, Redirect } from "react-router-dom";
 import '../../css files/login.css';
-
+import ServiceWrite from "../service/ServiceWrite";
 
 
 
@@ -51,6 +51,7 @@ function Login({authenticated, login, location}){
                 alert("로그인에 실패하였습니다.")
                 setInputValue(" ")
             }
+            return <ServiceWrite id ={id}/>
          } 
     
 
