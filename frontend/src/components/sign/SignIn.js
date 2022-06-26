@@ -4,7 +4,7 @@ import axios from "axios";
 export function SignIn ({id , password}){
 
     let body = {params:{
-        id: id,
+        mem_id: id,
         password: password
     }}
 
