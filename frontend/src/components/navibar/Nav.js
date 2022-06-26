@@ -1,60 +1,21 @@
-import React from "react";
-import '../../css files/nav.css';
-import {Link, useHistory} from 'react-router-dom';
-import Input from "../search-item/Input";
+// import React from "react";
+// import '../../css files/nav.css';
+// import {Link, useHistory} from 'react-router-dom';
+// import Input from "../search-item/Input";
 
 
-function Nav({authenticated , logout}){
+// function Nav({authenticated , logout}){
 
-    let history = useHistory();
+//     let history = useHistory();
     
-    const handleClick = ()=>{
-        logout();
-        history.push('/');
-    }
+//     const handleClick = ()=>{
+//         logout();
+//         history.push('/');
+//     }
 
-    return(
-        <>
-        <div id="navibar" className="nav-flex">
-            <div className="nav-left">
-                <div className="icon">
-                    <Link to={'/'}><img src="https://i.pinimg.com/736x/e5/99/a8/e599a837c7838a6da566c099c88ac3dd.jpg" alt="icon" className="title-icon" /></Link>
-                </div>
-                <div className="title">
-                    <Link to={'/'}>BUKBUK</Link> 
-                </div>
-            </div>
-            <div className="search">
-                <Input/>
-            </div>
-            <div className="tab">
+//     return(
+//         <>
+//             );
+// }; 
 
-                {authenticated
-                ? <div className="login">
-                    <div className="login-btn" onClick={handleClick}>로그아웃</div>
-                </div> 
-                :<div className="login">
-                    <Link to={'/login'}><div className="login-btn">로그인</div></Link>
-                </div>
-                }
-
-                {authenticated
-                ?<div className="new-member">
-                    <Link to={'/mypage'}> <div className="new-member-btn">내 정보 수정</div></Link>
-                </div>   
-                :<div className="new-member">
-                   <Link to={'/new-member'}> <div className="new-member-btn">회원가입</div></Link>
-                </div>
-                }
-
-
-                <div className="help">
-                    <Link to={'/service'}><div className="service-btn">고객센터</div></Link>
-                </div>
-            </div>
-        </div>
-        </>
-    );
-}; 
-
-export default Nav;
+// export default Nav;

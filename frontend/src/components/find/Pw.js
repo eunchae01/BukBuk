@@ -1,6 +1,6 @@
 import React , {useState} from "react";
 import Menu from "../navibar/Menu";
-import Nav from "../navibar/Nav";
+
 import axios from "axios";
 import '../../css files/pw-find.css'
 import Modal from "../modal/Modal";
@@ -70,7 +70,7 @@ const closeModal = ()=>{
     }
     return(
         <>
-        <Nav/>
+     
         <Menu/>
         <main id="find-pw">
             <div className="find-pw-top">

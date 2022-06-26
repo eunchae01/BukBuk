@@ -1,6 +1,6 @@
 import React , {useState ,useEffect} from "react";
 import Axios from 'axios';
-import Nav from "../navibar/Nav";
+
 import '../../css files/service.css'
 import {Link} from 'react-router-dom';
 import Menu from "../navibar/Menu";
@@ -27,7 +27,7 @@ function Service(){
     
     return(
         <>
-        <Nav/>
+  
         <Menu/>
         <main className="service-main">
             <div id="board">

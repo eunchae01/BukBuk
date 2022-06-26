@@ -1,5 +1,4 @@
 import React,{useState } from 'react';
-import Nav from '../navibar/Nav';
 import '../../css files/new-member-input.css';
 import Adress from './Adress';
 import '../../css files/font.css';
@@ -88,7 +87,6 @@ const handleButtonValid = (e) => {
   
   return (
     <>
-    <Nav/>
     <Menu/>
     <main className='signUp'>
       <form 

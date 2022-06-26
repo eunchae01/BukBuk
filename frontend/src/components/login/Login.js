@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Nav from "../navibar/Nav";
 import Menu from '../navibar/Menu';
 import { Link, Redirect } from "react-router-dom";
 import '../../css files/login.css';
@@ -93,7 +92,6 @@ function Login({authenticated, login, location}){
 
     return(
         <>
-            <Nav/>
             <Menu/>
             <main id="login-box">
                 <div className="top">

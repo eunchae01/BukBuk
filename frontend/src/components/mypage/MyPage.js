@@ -5,7 +5,6 @@ import Menu from "../navibar/Menu";
 function MyPage(){
     return(
         <>
-            <Nav/>
             <Menu/>
             <div>
                 <form>
@@ -30,7 +29,7 @@ function MyPage(){
                         <input/>
                     </div>
                     
-                    <button onClick={handleSubmit}></button>
+                    <button></button>
                 </form>
             </div>
         </>

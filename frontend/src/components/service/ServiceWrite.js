@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Nav from "../navibar/Nav";
+
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../../css files/service-write.css';
@@ -45,7 +45,7 @@ function ServiceWrite(){
 
     return(
         <>
-            <Nav/>
+           
             <main className="service-main">
                 <div id="writedown">
                     <input 
