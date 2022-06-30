@@ -13,7 +13,6 @@ import Books from './components/search-item/Books';
 import NewBooks from './components/newbook/NewBooks';
 import Id from './components/find/Id';
 import Pw from './components/find/Pw';
-import LogOut from './components/logout/LogOut';
 import MemberOut from './components/member-out/MemberOut';
 import {SignIn} from '../src/components/sign/SignIn';
 import Nav from './components/navibar/Nav';
@@ -27,6 +26,7 @@ function App() {
 
   const login = ({ id, password }) => setUser(SignIn({ id, password }));
   const logout = () => setUser(null);
+  console.log(authenticated)
    
   
   
@@ -38,12 +38,9 @@ function App() {
 
    return(
       <BrowserRouter>
-          <Nav authenticated={authenticated} logout={logout}/>
+        <Nav authenticated={authenticated} logout={logout}/>
          <Switch> 
-          <Route path={'/'}
-                  exact  
-                  component={Home}
-            />
+          <Route path={'/'} exact component={Home}/>
             <Route
             path="/login"
             render={props => (
@@ -66,18 +63,7 @@ function App() {
             authenticated={authenticated}
             path="/mypage"
             component={MyPage}
-          />
-
-            
-            <AuthRoute
-              authenticated={authenticated}
-              path="/logout"
-
-              component={LogOut}
-
-            />  
-
-
+            />
             <AuthRoute
               authenticated={authenticated}
               path="/member-out"
@@ -89,3 +75,9 @@ function App() {
 
 }
 export default App;
+
+
+
+
+
+

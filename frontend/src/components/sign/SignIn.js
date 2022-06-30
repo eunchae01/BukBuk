@@ -1,4 +1,5 @@
 import axios from "axios";
+import Login from "../login/Login";
 import MyPage from "../mypage/MyPage";
 
 const users = [
@@ -7,27 +8,19 @@ const users = [
     { id: 'park@test.com', password: '789', name: 'Park' }
   ]
   
-//   export function SignIn({ id, password }) {
-//     const user = users.find(user => user.id === id && user.password === password);
-//     if (user === undefined) throw new Error();
-//     return user;
-//   }
+  export function SignIn({ id, password }) {
+    const user = users.find(user => user.id === id && user.password === password);
+    if (user === undefined) throw new Error();
+    return user;
+  }
 
 
 
 
 
   
-  export function SignIn({ id, password }) {
+//   export function SignIn({ id, password }) {
     
-    const user = axios.post("http://localhost.8080/login-ok" , null , {params:{mem_id : id , mem_pwd: password}})
-    .then(res=> 
-        <MyPage props ={res.data}/>
-    )
-    if( user !== undefined ){ return user }
-    else if (user === undefined) throw new Error();
-    
-  }
-
-
-
+//      axios.post("http://localhost.8080/login-ok" , null , {params:{mem_id : id , mem_pwd: password}})
+     
+//   }

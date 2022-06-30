@@ -8,10 +8,8 @@ import ServiceWrite from "../service/ServiceWrite";
 
 
 function Login({authenticated, login, location}){
-        const [inputValue , setInputValue] = useState({
-            id: "",
-            password: ""
-        });
+    const [id, setId] = useState("");
+    const [password, setPassword] = useState("");
 
         
 
@@ -23,18 +21,18 @@ function Login({authenticated, login, location}){
 
 
 
-        const {id , password } = inputValue;
+       
 
 
         // input 위치에 맞게 할당하는 함수
-        const onChange =  event => {
-            const { name, value } = event.target;
-            // console.log(`${name}: ${event.target.value}`)
-            setInputValue({
-              ...inputValue, 
-              [name]: value,
-            });
-          };
+        // const onChange =  event => {
+        //     const { name, value } = event.target;
+        //     // console.log(`${name}: ${event.target.value}`)
+        //     setInputValue({
+        //       ...inputValue, 
+        //       [name]: value,
+        //     });
+        //   };
           
 
           const specialLetter = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
@@ -44,14 +42,14 @@ function Login({authenticated, login, location}){
           const getIsActive = isValidId && isValidPassword  === true;
 
 
-         const handleSubmit = ()=>{
+         const handleSubmit=()=>{
             try{
-                login({id , password})
+               login({id , password})
                 }
-            catch (e){
-                alert("로그인에 실패하였습니다." + e)
-                id(" ")
-                password("")
+            catch{
+                alert("로그인에 실패하였습니다.");
+                setId(" ");
+                setPassword(" ");
             }
             return <ServiceWrite id ={id}/>
          } 
@@ -63,31 +61,6 @@ function Login({authenticated, login, location}){
 
 
 
-
-         // 제출
-        //  const handleSubmit =async()=>{
-            
-        //     // console.log("id :" + id)
-        //     // console.log("pw :" + password)
-        //     // setUsers(id);
-        //     // console.log(users)
-        //     // console.log(authenticated)
-        //     await axios.post("http" , null , body )
-        //     .then(res=> 
-        //         setUsers(res.data)
-        //     ).catch(e=>alert("hi" +e ))
-        //     console.log("지금은" + authenticated)
-        //      if(authenticated === true)
-        //     {   
-        //             <Nav authenticated={authenticated}/> ;
-        //             <App authenticated={authenticated}/> ;
-        //             <Home authenticated={authenticated}/>;
-        //             history.push(from)  
-        //     }      
-          
-        // }
-
-       
 
         
         
@@ -104,15 +77,15 @@ function Login({authenticated, login, location}){
                     <p>Hello , Welcome to BUKBUK ! </p>
                 </div>
                 <div className="login-input">
-                    <form className="login-form" >
+                    <form className="login-form" onSubmit={handleSubmit}>
                         
                         <div className="id-pw">
-                            <input placeholder="아이디" type="id" name="id" onChange={onChange} className="id-input"/>
-                            <input placeholder="비밀번호" type={'password'} name="password" onChange={onChange} className="pw-input"/>
+                            <input placeholder="아이디" type="id" name="id" onChange={({ target: { value } }) => setId(value)} className="id-input"/>
+                            <input placeholder="비밀번호" type={'password'} name="password" onChange={({ target: { value } }) => setPassword(value)} className="pw-input"/>
                         </div>
 
                         {/* 로그인 버튼 */}
-                        <button type="submit" className={getIsActive ?'green' :'gray'} onClick={handleSubmit}>로그인</button>
+                        <button type="submit" className={getIsActive ?'green' :'gray'}>로그인</button>
                         
                         <div className="find">
                             <Link to={'/find/id'} className='id-find'>아이디 찾기</Link>

@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../../css files/nav.css';
 import {Link} from 'react-router-dom';
 import Input from "../search-item/Input";
 import LogOut from "../logout/LogOut";
-
+import Dropdown from "../dropdown/Dropdown";
 
 function Nav({authenticated , logout}){
-
-    
-    
+    const [dropdownVisibility, setDropdownVisibility] = useState(false);
+    useEffect(()=>{
+        setDropdownVisibility(false)
+    },[])
     return(
         <>
         <div id="navibar" className="nav-flex">
@@ -36,7 +37,15 @@ function Nav({authenticated , logout}){
 
                 {authenticated
                 ?<div className="new-member">
-                    <Link to={'/mypage'}> <div className="new-member-btn">내 정보 수정</div></Link>
+                    <div className="new-member-btn" onClick={(e)=>setDropdownVisibility(!dropdownVisibility)}>내 정보
+                    <Dropdown visibility={dropdownVisibility}>
+                        <ul>
+                            <Link to={'/mypage'}><li>내 정보 수정</li></Link>
+                            <Link to={'/cart'}><li>장바구니</li></Link>
+                            <Link to={'/member-out'}><li>회원 탈퇴</li></Link>
+                        </ul>
+                    </Dropdown>
+                    </div>
                 </div>   
                 :<div className="new-member">
                    <Link to={'/new-member'}> <div className="new-member-btn">회원가입</div></Link>

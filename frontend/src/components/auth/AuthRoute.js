@@ -1,16 +1,16 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
-function AuthRoute({ authenticated, component: Component }) {
+function AuthRoute({ authenticated, component: Component, render, ...rest }) {
   return (
     <Route
-      render={(props) =>
+      {...rest}
+      render={props =>
         authenticated ? (
-            <Component {...props} />
-          )
-        : (
-          alert("해당 페이지는 로그인 후 이용 부탁드립니다 !")  ,    
-          <Redirect to={{ pathname: "/login", state: { from: props.location } }}
+          render ? render(props) : <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/login', state: { from: props.location } }}
           />
         )
       }
