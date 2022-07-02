@@ -151,7 +151,8 @@ const handleButtonValid = (e) => {
                 className='input'
                 name="mem_name"
                 onChange={handleInput}
-                placeholder={mem_name}
+                value={mem_name}
+                readOnly
               />
             </div>
             <div className="emailInput">
@@ -160,7 +161,8 @@ const handleButtonValid = (e) => {
               className='input'
                 name="mem_id"
                 onChange={handleInput}
-                placeholder={mem_id}
+                value={mem_id}
+                readOnly
               />
             </div>
             <div className="passwordInput">
