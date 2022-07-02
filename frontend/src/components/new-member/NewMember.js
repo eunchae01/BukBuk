@@ -1,4 +1,4 @@
-import React,{useState } from 'react';
+import React,{useState , useRef } from 'react';
 import '../../css files/new-member-input.css';
 import Adress from './Adress';
 import '../../css files/font.css';
@@ -7,7 +7,36 @@ import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 function LogIn(){
 
+
+  // 데이터를 넘겨주기 위한 상태
   const [ data ,setData] = useState(null)
+
+  // 이미지 프로파일 변경상태
+  const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+  const fileInput = useRef(null)
+
+
+
+  // 프로파일 이미지 변경
+  const onChangeProfileImage = (e) => {
+    if(e.target.files[0]){
+              setImage(e.target.files[0])
+          }else{ //업로드 취소할 시
+              setImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+              return
+          }
+    //화면에 프로필 사진 표시
+          const reader = new FileReader();
+          reader.onload = () => {
+              if(reader.readyState === 2){
+                  setImage(reader.result)
+              }
+          }
+          reader.readAsDataURL(e.target.files[0])
+      }
+
+
+
 
 
   const [inputValue, setInputValue] = useState({
@@ -18,10 +47,31 @@ function LogIn(){
     mem_addr: '',
   });
 
+
+
   const [checkBoxActive, setCheckBoxActive] = useState(false);
 
   const { mem_name, mem_id, mem_pwd, mem_phone, mem_addr } = inputValue;
   
+
+
+  // 모든 input의 value가 1자 이상이 되어야 한다
+  const isValidEmail = mem_id.includes('@') && mem_id.includes('.');
+  const specialLetter = mem_pwd.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+  const isValidPassword = mem_pwd.length >= 8 && specialLetter >= 1;
+  const isValidPhone = mem_phone.includes('-') && mem_phone.length >= 13;
+  const isValidInput = mem_name.length >= 1 && mem_phone.length >= 1 && mem_addr.length >= 1;
+  const isCheckBoxClicked = () => {
+      setCheckBoxActive(!checkBoxActive);
+      console.log(checkBoxActive);
+      
+    };
+  // 검사한 모든 로직의 유효성 검사가 true가 될때 getIsActive함수가 작동한다. 버튼 클릭 이벤트가 발생할때 넣어줄 함수.
+  const getIsActive = 
+     isValidEmail && isValidPassword && isValidInput && checkBoxActive && isValidPhone === true;
+  
+
+
   const handleInput = event => {
     const { name, value } = event.target;
     setInputValue({
@@ -31,20 +81,6 @@ function LogIn(){
     console.log(`${name} 의 값은 ${value} 입니다`)
   };
 
-  // 모든 input의 value가 1자 이상이 되어야 한다
-const isValidEmail = mem_id.includes('@') && mem_id.includes('.');
-const specialLetter = mem_pwd.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-const isValidPassword = mem_pwd.length >= 8 && specialLetter >= 1;
-const isValidPhone = mem_phone.includes('-') && mem_phone.length >= 13;
-const isValidInput = mem_name.length >= 1 && mem_phone.length >= 1 && mem_addr.length >= 1;
-const isCheckBoxClicked = () => {
-    setCheckBoxActive(!checkBoxActive);
-    console.log(checkBoxActive);
-    
-  };
-// 검사한 모든 로직의 유효성 검사가 true가 될때 getIsActive함수가 작동한다. 버튼 클릭 이벤트가 발생할때 넣어줄 함수.
-const getIsActive = 
-   isValidEmail && isValidPassword && isValidInput && checkBoxActive && isValidPhone === true;
 
 
 // let body = {params:{
@@ -57,6 +93,17 @@ const getIsActive =
 
 const history = useHistory();
 
+let body ={params:{
+  mem_name : mem_name,
+  mem_pwd : mem_pwd,
+  mem_addr : mem_addr,
+  mem_phone: mem_phone,
+  mem_id: mem_id,
+  mem_profile: Image
+}
+} 
+
+
 // 유효성 검사 중 하나라도 만족하지못할때 즉, 버튼이 비활성화 될 때 버튼을 클릭하면 아래와 같은 경고창이 뜬다.
 const handleButtonValid = (e) => {
   e.preventDefault();
@@ -67,13 +114,7 @@ const handleButtonValid = (e) => {
  else if(!checkBoxActive){alert('체크박스를 클릭 해주세요')}
  else{
   console.log('success')
-  axios.post('http://localhost:8080/sign', null ,  {params:{
-                                            mem_name : mem_name,
-                                            mem_pwd : mem_pwd,
-                                            mem_addr : mem_addr,
-                                            mem_phone: mem_phone,
-                                            mem_id: mem_id,}
-                                          } )
+  axios.post('http://localhost:8080/sign', null ,  body )
   .then(res=>
     setData(res.data)
   )
@@ -93,6 +134,17 @@ const handleButtonValid = (e) => {
       className="signUpInput"
       onSubmit={handleButtonValid}
       >
+            <div className='profileUpload'>
+              <img src={Image}  onClick={()=>{fileInput.current.click()}} alt="프로파일 이미지"/>
+              <input 
+                type='file' 
+                style={{display:'block'}}
+                accept='image/jpg,impge/png,image/jpeg' 
+                name='profile_img'
+                onChange={onChangeProfileImage}
+                ref={fileInput}
+              />
+            </div>
             <div className="nameInput">
               <div className="inputMessage">이름 *</div>
               <input

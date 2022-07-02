@@ -25,7 +25,7 @@ const PopupPostCode = (props) => {
     const postCodeStyle = {
         display: "block",
         position: "absolute",
-        top: "0%",
+        top: "10%",
         left: "100%",
         width: "600px",
         height: "600px",

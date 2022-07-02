@@ -1,21 +1,65 @@
-// import React from "react";
-// import '../../css files/nav.css';
-// import {Link, useHistory} from 'react-router-dom';
-// import Input from "../search-item/Input";
+import React, { useEffect, useState } from "react";
+import '../../css files/nav.css';
+import {Link} from 'react-router-dom';
+import Input from "../search-item/Input";
+import LogOut from "../logout/LogOut";
+import Dropdown from "../dropdown/Dropdown";
+
+function Nav({authenticated , logout}){
+    const [dropdownVisibility, setDropdownVisibility] = useState(false);
+    useEffect(()=>{
+        setDropdownVisibility(false)
+    },[])
+    return(
+        <>
+        <div id="navibar" className="nav-flex">
+            <div className="nav-left">
+                <div className="icon">
+                    <Link to={'/'}><img src="https://i.pinimg.com/736x/e5/99/a8/e599a837c7838a6da566c099c88ac3dd.jpg" alt="icon" className="title-icon" /></Link>
+                </div>
+                <div className="title">
+                    <Link to={'/'}>BUKBUK</Link> 
+                </div>
+            </div>
+            <div className="search">
+                <Input/>
+            </div>
+            <div className="tab">
+
+                {authenticated
+                ? <div className="login">
+                   <LogOut logout={logout}/>
+                </div> 
+                :<div className="login">
+                    <Link to={'/login'}><div className="login-btn">로그인</div></Link>
+                </div>
+                }
+
+                {authenticated
+                ?<div className="new-member">
+                    <div className="new-member-btn" onClick={(e)=>setDropdownVisibility(!dropdownVisibility)}>내 정보
+                    <Dropdown visibility={dropdownVisibility}>
+                        <ul>
+                            <Link to={'/mypage'}><li>내 정보 수정</li></Link>
+                            <Link to={'/cart'}><li>장바구니</li></Link>
+                            <Link to={'/member-out'}><li>회원 탈퇴</li></Link>
+                        </ul>
+                    </Dropdown>
+                    </div>
+                </div>   
+                :<div className="new-member">
+                   <Link to={'/new-member'}> <div className="new-member-btn">회원가입</div></Link>
+                </div>
+                }
 
 
-// function Nav({authenticated , logout}){
+                <div className="help">
+                    <Link to={'/service'}><div className="service-btn">고객센터</div></Link>
+                </div>
+            </div>
+        </div>
+        </>
+            );
+}; 
 
-//     let history = useHistory();
-    
-//     const handleClick = ()=>{
-//         logout();
-//         history.push('/');
-//     }
-
-//     return(
-//         <>
-//             );
-// }; 
-
-// export default Nav;
+export default Nav;

@@ -1,9 +1,9 @@
 import React , {useState} from "react";
 import Menu from "../navibar/Menu";
-
 import axios from "axios";
 import '../../css files/pw-find.css'
 import Modal from "../modal/Modal";
+
 
 
 function Pw(){
@@ -70,7 +70,7 @@ const closeModal = ()=>{
     }
     return(
         <>
-     
+      
         <Menu/>
         <main id="find-pw">
             <div className="find-pw-top">
