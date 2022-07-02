@@ -112,6 +112,8 @@ public class bukbukController {
         BukMemberDTO dto = this.memberService.getMember(id);
 
         int logIn = 0;
+        String login_id= null;
+        String login_pwd= null;
 
         if (dto != null){
             if (pwd.equals(dto.getMem_pwd())){
@@ -122,6 +124,8 @@ public class bukbukController {
 
 
                 logIn = 1;
+                login_id = dto.getMem_id();
+                login_pwd = dto.getMem_pwd();
             } else {   
                 System.out.println("비밀번호 일치하지 않음");
 
