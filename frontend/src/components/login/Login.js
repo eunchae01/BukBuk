@@ -42,7 +42,8 @@ function Login({authenticated, login, location}){
           const getIsActive = isValidId && isValidPassword  === true;
 
 
-         const handleSubmit=()=>{
+         const handleSubmit=(e)=>{
+            e.preventDefault();
             try{
                login({id , password})
                 }
