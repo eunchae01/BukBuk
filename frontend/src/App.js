@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Login from './components/login/Login';
@@ -14,21 +14,22 @@ import NewBooks from './components/newbook/NewBooks';
 import Id from './components/find/Id';
 import Pw from './components/find/Pw';
 import MemberOut from './components/member-out/MemberOut';
-import {SignIn} from '../src/components/sign/SignIn';
 import Nav from './components/navibar/Nav';
 
 
 
 function App() {
 
-  const [user, setUser] = useState(null);
-  const authenticated = user != null;
+  // const [user, setUser] = useState(null);
+  // const authenticated = user != null;
 
-  const login = ({ id, password }) => setUser(SignIn({ id, password }));
-  const logout = () => setUser(null);
-  console.log(authenticated)
+  // const login = ({ id, password }) => setUser(SignIn({ id, password }));
+  // const logout = () => setUser(null);
+  // console.log(authenticated)
    
-  
+  const token = localStorage.getItem('accessToken');
+
+
   
     
 
@@ -38,16 +39,10 @@ function App() {
 
    return(
       <BrowserRouter>
-        <Nav authenticated={authenticated} logout={logout}/>
+        <Nav authenticated={token}/>
          <Switch> 
           <Route path={'/'} exact component={Home}/>
-            <Route
-            path="/login"
-            render={props => (
-              <Login authenticated={authenticated} login={login} {...props} />
-            )}
-          />
-            
+            <Route path={"/login"} component={Login}/>
             <Route path={'/new-member'}component={NewMember}/> 
             <Route path={'/service'} component={Service}/>
             <Route path={'/write'} component={ServiceWrite}/>
@@ -60,12 +55,12 @@ function App() {
 
               {/*로그인 안 했을 때 접근 불가 url  */}
             <AuthRoute
-            authenticated={authenticated}
+            authenticated={token}
             path="/mypage"
             component={MyPage}
             />
             <AuthRoute
-              authenticated={authenticated}
+              authenticated={token}
               path="/member-out"
               component={MemberOut}
             />  
@@ -77,7 +72,36 @@ function App() {
 export default App;
 
 
+// import React from 'react';
+// import './App.css';
+// import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// import Test from './components/zzzJwtTest3/Test';
+// import Profile from './components/zzzJwtTest3/Profile';
 
+// function App() {
+//   const token = localStorage.getItem('accessToken');
+
+//   if(!token) {
+//     return <Test />
+//   }
+
+//   return (
+//     <div className="wrapper">
+//       <BrowserRouter>
+//         <Switch>
+//           <Route path="/profile">
+//             <Profile />
+//           </Route>
+//           <Route path="/">
+//             <Profile />
+//           </Route>
+//         </Switch>
+//       </BrowserRouter>
+//     </div>
+//   );
+// }
+
+// export default App;
 
 
 

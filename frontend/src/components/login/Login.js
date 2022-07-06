@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import Menu from '../navibar/Menu';
-import { Link, Redirect } from "react-router-dom";
+import { Link} from "react-router-dom";
 import '../../css files/login.css';
-import ServiceWrite from "../service/ServiceWrite";
+
+import swal from 'sweetalert';
 
 
 
-
-function Login({authenticated, login, location}){
-    const [id, setId] = useState("");
-    const [password, setPassword] = useState("");
-
+function Login(){
+    const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
         
 
 
@@ -35,30 +34,51 @@ function Login({authenticated, login, location}){
         //   };
           
 
-          const specialLetter = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-          const isValidId = id.length >= 1;
-          const isValidPassword = password.length >= 8 && specialLetter >= 1;  
+        //   const specialLetter = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+        //   const isValidId = id.length >= 1;
+        //   const isValidPassword = password.length >= 8 && specialLetter >= 1;  
 
-          const getIsActive = isValidId && isValidPassword  === true;
+        //   const getIsActive = isValidId && isValidPassword  === true;
 
 
-         const handleSubmit=(e)=>{
+
+
+
+          async function loginUser(credentials) {
+            return fetch('https://www.mecallapi.com/api/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(credentials)
+            })
+              .then(data => data.json())
+           }
+          
+          
+
+
+
+          const handleSubmit = async e => {
             e.preventDefault();
-            try{
-               login({id , password})
-                }
-            catch{
-                alert("로그인에 실패하였습니다.");
-                setId(" ");
-                setPassword(" ");
+            const response = await loginUser({
+              username,
+              password
+            });
+            if ('accessToken' in response) {
+              swal("로그인 성공 !", response.message, "success", {
+                buttons: false,
+                timer: 2000,
+              })
+              .then((value) => {
+                localStorage.setItem('accessToken', response['accessToken']);
+                localStorage.setItem('user', JSON.stringify(response['user']));
+                window.location.href = "/";
+              });
+            } else {
+              swal("로그인 실패", response.message, "error");
             }
-            return <ServiceWrite id ={id}/>
-         } 
-    
-
-        
-         const { from } = location.state || { from: { pathname: "/" } };
-         if (authenticated) return <Redirect to={from} />;
+          }
 
 
 
@@ -81,12 +101,12 @@ function Login({authenticated, login, location}){
                     <form className="login-form" onSubmit={handleSubmit}>
                         
                         <div className="id-pw">
-                            <input placeholder="아이디" type="id" name="id" onChange={({ target: { value } }) => setId(value)} className="id-input"/>
-                            <input placeholder="비밀번호" type={'password'} name="password" onChange={({ target: { value } }) => setPassword(value)} className="pw-input"/>
+                            <input placeholder="아이디" type="id" name="id" onChange={e => setUserName(e.target.value)} className="id-input"/>
+                            <input placeholder="비밀번호" type={'password'} name="password" onChange={e => setPassword(e.target.value)} className="pw-input"/>
                         </div>
 
                         {/* 로그인 버튼 */}
-                        <button type="submit" className={getIsActive ?'green' :'gray'}>로그인</button>
+                        <button type="submit" className={'green'}>로그인</button>
                         
                         <div className="find">
                             <Link to={'/find/id'} className='id-find'>아이디 찾기</Link>

@@ -8,7 +8,7 @@ import Test from './components/zzzJwtTest3/Test'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <Test/>
+    <App/>
   </BrowserRouter>
     
 
