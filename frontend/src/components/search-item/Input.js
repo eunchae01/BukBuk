@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { bookSearch} from "./api";
 import "../../css files/Input.css";
 import Item from "./Item";
+import { useHistory } from "react-router-dom";
 
 const Input = props => {
   const [books, setBooks] = useState([]);
@@ -22,26 +23,42 @@ const Input = props => {
   //   }
   // }, [query]);
 
+  // text 검색어가 바뀔 때 호출되는 함수.
+  const onTextUpdate = e => {
+    setText(e.target.value);
+    
+  };
+
+
+
+let history = useHistory()
+
+
 
   const onEnter = e => {
     if (e.keyCode === 13)  {
       setQuery(text);
-    }if (window.location.pathname !=='/'){
-      alert('검색은 메인페이지를 이용하세요')
-    }
   };
+  setTimeout(()=>{
+    history.push(`/search?search=${text}`);
+  },2000)
+
+}
   const onClick = () =>{
     if(window.location.pathname === '/'){
-      setQuery(text)
-    }else{
-      alert("검색은 메인페이지를 이용하세요")
+      setQuery(text);
     }
-  }
+    setTimeout(()=>{
+      history.push(`/search?search=${text}`);
+    },2000)
 
-  // text 검색어가 바뀔 때 호출되는 함수.
-  const onTextUpdate = e => {
-    setText(e.target.value);
-  };
+  }
+  
+
+
+
+
+
 
   const bookSearchHttpHandler = async (query, reset) => {
     const params = {
@@ -100,21 +117,7 @@ const Input = props => {
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxsZsjY46D3whfdkqeE3BvzAKy61374wBUGw&usqp=CAU" alt="search-btn" />
         </button>
     </div>
-    <div>
-        <ul className="item-box">
-            {books.map((book, index) => (
-        <Item
-            key={index}
-            thumbnail={book.thumbnail}
-            title={book.title}
-            blogname={book.blogname}
-            contents={book.contents}
-            url={book.url}
-            authors ={book.authors}
-        />
-        ))}
-        </ul>
-    </div>
+   
     </>
   );
 };

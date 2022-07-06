@@ -5,7 +5,7 @@ import Input from "../search-item/Input";
 import LogOut from "../logout/LogOut";
 import Dropdown from "../dropdown/Dropdown";
 
-function Nav({authenticated , logout}){
+function Nav({authenticated}){
     const [dropdownVisibility, setDropdownVisibility] = useState(false);
     useEffect(()=>{
         setDropdownVisibility(false)
@@ -28,7 +28,7 @@ function Nav({authenticated , logout}){
 
                 {authenticated
                 ? <div className="login">
-                   <LogOut logout={logout}/>
+                   <LogOut />
                 </div> 
                 :<div className="login">
                     <Link to={'/login'}><div className="login-btn">로그인</div></Link>
