@@ -15,6 +15,7 @@ import Id from './components/find/Id';
 import Pw from './components/find/Pw';
 import MemberOut from './components/member-out/MemberOut';
 import Nav from './components/navibar/Nav';
+import Search from './components/book-search/Search';
 
 
 
@@ -51,7 +52,7 @@ function App() {
             <Route path={'/newbooks'} component={NewBooks}/>
             <Route path={'/find/id'} component={Id}/>
             <Route path={'/find/pw'} component={Pw}/>
-
+            <Route path={'/search'} component={Search}/>
 
               {/*로그인 안 했을 때 접근 불가 url  */}
             <AuthRoute
