@@ -27,6 +27,9 @@ const [text , setText] = useState([])
         .then(res=>setText(res.data.review))
         .catch(console.log("에러"))
     },[bookTitle])
+
+
+
     return(
         <div>
          
@@ -41,6 +44,9 @@ const [text , setText] = useState([])
         </div>
     );
 };
+
+
+
 
 export default Books;
 

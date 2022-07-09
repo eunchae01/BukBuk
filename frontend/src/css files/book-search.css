@@ -1,0 +1,12 @@
+.item-box {
+    position: absolute;
+    top: 65%;
+    left: 0;
+    display: grid;
+    padding: 1%;
+    width: 100%;
+    margin: auto;
+    grid-gap: 1vw;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  

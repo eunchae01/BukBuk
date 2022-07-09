@@ -46,17 +46,6 @@ body {
   background-color: inherit;
   border-radius: 10px;
 }
-.item-box {
-  position: absolute;
-  top: 70%;
-  left: 0;
-  display: grid;
-  padding: 1%;
-  width: 100%;
-  margin: auto;
-  grid-gap: 1vw;
-  grid-template-columns: repeat(5, 1fr);
-}
 
 li {
   list-style-type: none;

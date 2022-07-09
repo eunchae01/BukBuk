@@ -1,27 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { bookSearch} from "./api";
+import React, { useState } from "react";
 import "../../css files/Input.css";
-import Item from "./Item";
 import { useHistory } from "react-router-dom";
 
 const Input = props => {
-  const [books, setBooks] = useState([]);
   const [text, setText] = useState("");
-  const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    if (query.length > 0) {
-      bookSearchHttpHandler(query, true);
-    }
-  }, [query]);
+  
 
 
-  // 신간도서 코드
-  // useEffect(() => {
-  //   if (query.length > 0) {
-  //     recentBookHttpHandler(query, true);
-  //   }
-  // }, [query]);
 
   // text 검색어가 바뀔 때 호출되는 함수.
   const onTextUpdate = e => {
@@ -37,22 +22,17 @@ let history = useHistory()
 
   const onEnter = e => {
     if (e.keyCode === 13)  {
-      setQuery(text);
+      history.push(`/search?search=${text}`);    
   };
-  setTimeout(()=>{
-    history.push(`/search?search=${text}`);
-  },2000)
+  
+  
 
 }
   const onClick = () =>{
     if(window.location.pathname === '/'){
-      setQuery(text);
+      history.push(`/search?search=${text}`);  
     }
-    setTimeout(()=>{
-      history.push(`/search?search=${text}`);
-    },2000)
-
-  }
+ }
   
 
 
@@ -60,42 +40,8 @@ let history = useHistory()
 
 
 
-  const bookSearchHttpHandler = async (query, reset) => {
-    const params = {
-      query: query,
-      sort: 'accuracy', // accuracy | recency 정확도 or 최신
-      page: 1, // 페이지번호
-      size: 20 // 한 페이지에 보여 질 문서의 개수
-    };
-
-    // 책의 정보
-    const { data } = await bookSearch(params);
-    if (reset) {
-      setBooks(data.documents); //책 정보들이 콘솔창에 띄워짐.
-    } else {
-      setBooks(books.concat(data.documents));
-    }
-  };
 
 
-  // 신간도서 코드
-//   const recentBookHttpHandler = async  (query, reset) => {
-//     const params = {
-//       query: query,
-//       sort: 'accuracy', // accuracy | recency 정확도 or 최신
-//       page: 1, // 페이지번호
-//       size: 20 // 한 페이지에 보여 질 문서의 개수
-//     };
-
-//   // const { data } = await recentBook(params);
-//   // if (reset) {
-//   //   setBooks(data.documents); //책 정보들이 콘솔창에 띄워짐.
-//   // } else {
-//   //   setBooks(books.concat(data.documents));
-//   // }
-// };
-  // console.log(window.location.pathname)
-  // console.log(books);
   
   return (
     <>

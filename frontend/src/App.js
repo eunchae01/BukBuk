@@ -16,6 +16,7 @@ import Pw from './components/find/Pw';
 import MemberOut from './components/member-out/MemberOut';
 import Nav from './components/navibar/Nav';
 import Search from './components/book-search/Search';
+import Cart from './components/cart/Cart';
 
 
 
@@ -59,6 +60,11 @@ function App() {
             authenticated={token}
             path="/mypage"
             component={MyPage}
+            />
+            <AuthRoute
+            authenticated={token}
+            path="/cart"
+            component={Cart}
             />
             <AuthRoute
               authenticated={token}
