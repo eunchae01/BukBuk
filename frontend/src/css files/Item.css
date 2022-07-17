@@ -1,12 +1,27 @@
-li {
+.item-box {
     list-style-type: none;
-    border: 1px solid #dddddd;
     padding: 20px;
+    background-color: aliceblue;
   }
-  
-  li dl {
+
+  .item-box div{
+    height: 5vh;
+    background-color: burlywood;
+  }  
+
+  .item-box div div img{
+    height: 5vh;
+    z-index: 999;
+
+  }
+
+
+
+
+  /* li dl {
     display: flex;
     flex-direction: column;
+    background-color: blue;
   }
   
   li dl dt {
@@ -21,4 +36,4 @@ li {
   
   li dl dd {
     flex: 1;
-  }
+  } */

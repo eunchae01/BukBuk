@@ -25,10 +25,10 @@ function Search(props){
         const url = new URLSearchParams(searchParams);
         const search =url.get('search');
         setQuery(search)
+        console.log({query})
         if (query.length > 0) {
         bookSearchHttpHandler(query, true);
-        }}, [query]
-        )
+        }}, [{query}] )
       
 
 
